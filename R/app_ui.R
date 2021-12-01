@@ -46,17 +46,12 @@ app_ui <- function(request) {
             shiny::column(
               width = 6, align = "center",
               shiny::selectizeInput(inputId = "continent", "Please select a continent:", 
-                                    choices = c("Europe", "North America", "South America", "Africa", "Asia", "Oceania"),
-                                    multiple = TRUE,
-                                    options = list(placeholder = "All",
-                                                   maxItems = 1))
+                                    choices = c("All", "Europe", "North America", "South America", "Africa", "Asia", "Oceania"))
             ),
             shiny::column(
               width = 6, align = "center",
               shiny::selectizeInput(inputId = "country", "Please select a country:", 
-                                    choices = NULL,
-                                    multiple = TRUE, 
-                                    options = list(placeholder = "All"))
+                                    choices = NULL)
             )
           ),
           bs4Dash::box(

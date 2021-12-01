@@ -41,8 +41,8 @@ app_server <- function( input, output, session ) {
   
   shiny::observeEvent(c(input$sidebar, input$country), {
     if (input$sidebar == "gpadcards") {
-      if (is.null(input$country)) {
-        if (is.null(input$continent)) {
+      if (input$country == "All") {
+        if (input$continent == "All") {
           rv$datasets <- datasets
         }
       } else {
@@ -81,7 +81,15 @@ app_server <- function( input, output, session ) {
   })
   
   shiny::observeEvent(input$reset, {
-    rv$datasets <- datasets
+    if(input$continent == "All" & input$country == "All"){
+      rv$datasets <- datasets
+    }
+    if(input$continent != "All"){
+      rv$datasets <- datasets %>% dplyr::filter(Continent.of.data.collection == input$continent)
+    }
+    if(input$country != "All"){
+      rv$datasets <- datasets %>% dplyr::filter(Country.of.data.collection == input$country)
+    }
     shiny::updateSelectInput(inputId = "sex", selected = "All")
     ethnicity <- rv$datasets %>% 
       dplyr::mutate(ethnicity_group = stringr::str_to_lower(ethnicity_group)) %>% 
@@ -111,12 +119,12 @@ app_server <- function( input, output, session ) {
   })
   
   shiny::observeEvent(c(input$continent, input$sidebar), {
-  if (is.null(input$continent)) {
+  if (input$continent == "All") {
     rv$datasets <- datasets
   } else {
     rv$datasets <- datasets %>% 
       dplyr::filter(Continent.of.data.collection == input$continent)
-    countries <- c(rv$datasets %>%
+    countries <- c("All", rv$datasets %>%
                      dplyr::filter(Continent.of.data.collection == input$continent) %>%
       dplyr::filter(!stringr::str_detect(Country.of.data.collection, ",")) %>%
       dplyr::select(Country.of.data.collection) %>%
@@ -154,7 +162,7 @@ app_server <- function( input, output, session ) {
   })
   
   shiny::observeEvent(c(input$sidebar, input$continent), {
-    if (is.null(input$continent)) {
+    if (input$continent == "All") {
       rv$map_filter <- continents %>%
         dplyr::select(Country) %>%
         unlist()
@@ -275,7 +283,7 @@ app_server <- function( input, output, session ) {
       dplyr::distinct()
     
     
-    if (!is.null(input$continent)) {
+    if (input$continent != "All") {
       if ("Oceania" %in% input$continent) {
         map <- map %>% dplyr::filter(long >= 0)
       } else {
