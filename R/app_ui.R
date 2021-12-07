@@ -15,7 +15,9 @@ app_ui <- function(request) {
       ),
       fixed = TRUE,
       tags$style("#home_page {cursor: pointer;}"),
-      div(id = "home_page", icon("home"))
+      tags$style("#issue_report {cursor: pointer; padding-left: 20px;"),
+      div(id = "home_page", icon("home")),
+      div(id = "issue_report", "Something we can improve?")
     ),
     sidebar = bs4Dash::dashboardSidebar(
       bs4Dash::sidebarMenu(

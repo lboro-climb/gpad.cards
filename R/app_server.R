@@ -32,6 +32,13 @@ app_server <- function( input, output, session ) {
   shinyjs::onclick("home_page",
                    start_up_modal())
   
+  shinyjs::onclick("issue_report",
+                   showModal(modalDialog(
+                     size = "l", 
+                     renderUI({tags$iframe(src="https://docs.google.com/forms/d/e/1FAIpQLSfOz1vyYNMidS0xUe09XTLgCkEhmbhMg8rIzIAhF7CdmpYKlg/viewform?embedded=true", width="640", height="810")})
+                   ))
+                   )
+  
   shinyjs::onclick("clickdiv", shiny::showModal(shiny::modalDialog(
     title = "Papers from these datasets",
     DT::dataTableOutput("paper_links"), size = "l"
@@ -121,6 +128,24 @@ app_server <- function( input, output, session ) {
   shiny::observeEvent(c(input$continent, input$sidebar), {
   if (input$continent == "All") {
     rv$datasets <- datasets
+    countries <- c("All", rv$datasets %>%
+                     dplyr::filter(!stringr::str_detect(Country.of.data.collection, ",")) %>%
+                     dplyr::select(Country.of.data.collection) %>%
+                     dplyr::filter(Country.of.data.collection != "13 European Countries") %>%
+                     dplyr::distinct())
+    shiny::updateSelectInput(inputId = "country", choices = countries)
+    ethnicity <- rv$datasets %>%
+      dplyr::mutate(ethnicity_group = stringr::str_to_lower(ethnicity_group)) %>%
+      dplyr::summarise(ethnicity_group = stringr::str_split(ethnicity_group, ",")) %>%
+      tidyr::unnest(cols = dplyr::everything()) %>%
+      dplyr::distinct()
+    shiny::updateSelectInput(inputId = "ethnicity", choices = ethnicity)
+    device_brand <- rv$datasets %>% dplyr::select(Device.brand)
+    shiny::updateSelectInput(inputId = "device_brand", choices = device_brand)
+    device_model <- rv$datasets %>% dplyr::select(Devie.model)
+    shiny::updateSelectInput(inputId = "device_model", choices = device_model)
+    device_placement <- rv$datasets %>% dplyr::select(Placement)
+    shiny::updateSelectInput(inputId = "placement", choices = device_placement)
   } else {
     rv$datasets <- datasets %>% 
       dplyr::filter(Continent.of.data.collection == input$continent)
