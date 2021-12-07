@@ -4,6 +4,9 @@
 #'     DO NOT REMOVE.
 #' @import shiny
 #' @noRd
+
+ggplot2::theme_set(ggthemes::theme_economist())
+
 app_ui <- function(request) {
   bs4Dash::dashboardPage(
     header = bs4Dash::dashboardHeader(
