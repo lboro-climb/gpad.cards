@@ -1,7 +1,7 @@
 # GPAD cards
 
 [![License: LGPL v3](https://img.shields.io/badge/License-LGPL_v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)
-[![](https://img.shields.io/badge/Shiny-shinyapps.io-blue?style=flat&labelColor=white&logo=RStudio&logoColor=blue)](https://jonah-thomas.shinyapps.io/scoping_shiny/)
+[![](https://img.shields.io/badge/Shiny-shinyapps.io-blue?style=flat&labelColor=white&logo=RStudio&logoColor=blue)](https://climb.shinyapps.io/gpad/)
 
 The goal of GPAD cards is to allow researchers to identify datasets that have collected device measured physical activity as well as a range of cardiometabolic health outcomes. 
 
