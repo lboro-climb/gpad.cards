@@ -21,6 +21,7 @@ Imports:
     magrittr,
     mapproj,
     maps,
+    pkgload,
     plotly,
     processx,
     readxl,
