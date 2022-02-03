@@ -1130,7 +1130,7 @@ app_server <- function( input, output, session ) {
                     value = paste("Number of covariates collected:", rv$datasets[rv$sel[[1]], ] %>%
                                     dplyr::select(Sex, Age, Ethnicity, Education.level, Household.income, Socio.economic.status, Smoking.status, Clinical.diagnosis.medical.history, 
                                                   Fruit.and.vegetable.intake) %>%
-                                    dplyr::mutate(across(.cols = everything(), ~ if_else(. == "Yes", 1, 0))) %>%
+                                    dplyr::mutate(across(.cols = everything(), ~ dplyr::if_else(. == "Yes", 1, 0))) %>%
                                     dplyr::rowwise() %>%
                                     dplyr::summarise(
                                       covariates = sum(c(Sex, Age, Ethnicity, Education.level, Household.income, Socio.economic.status, Smoking.status, 
@@ -1156,7 +1156,7 @@ app_server <- function( input, output, session ) {
                                       Height, Weight, Waist.circumference, Hip.circumference, Fat.mass, Visceral.fat, SBP, DBP, Resting.heart.rate, HDL.cholesterol, 
                                       LDL.cholesterol, Total.cholesterol, Triglyceride, HbA1c, VLDL, Glucose, Insulin, Oral.glucose.tolerance.test, Metabolic.syndrome
                                     ) %>%
-                                    dplyr::mutate(across(.cols = everything(), ~ if_else(. == "Yes", 1, 0))) %>%
+                                    dplyr::mutate(across(.cols = everything(), ~ dplyr::if_else(. == "Yes", 1, 0))) %>%
                                     dplyr::rowwise() %>%
                                     dplyr::summarise(
                                       covariates = sum(c(
