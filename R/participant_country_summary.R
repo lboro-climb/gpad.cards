@@ -7,7 +7,6 @@
 #' @return A dataframe summarising the number of participants collected in each country 
 #' @export
 #'
-#' @examples
 participant_country_summary <- function(data = rv$datasets){
   data %>%
     dplyr::select(Country.of.data.collection, Number.recruited) %>%

@@ -5,7 +5,6 @@
 #' @return A dataset to be used to create a chloropleth world map
 #' @export
 #'
-#' @examples
 generate_world_map <- function() {
   multi <- rv$datasets %>%
     select(Country.of.data.collection) %>%
