@@ -1,5 +1,4 @@
-
-datasets <- readxl::read_xlsx("/Users/jonahthomas/R_projects/gpad.cards_DRAFT/Data extraction form_FINAL.xlsx", skip = 1, sheet = 2, 
+datasets <- readxl::read_xlsx("./data-raw/Data extraction form_FINAL.xlsx", skip = 1, sheet = 1, 
                               .name_repair = "universal") %>%
   dplyr::mutate(
     dataset_name = stringr::str_trunc(dataset_name, width = 30, side = "right"),
