@@ -74,16 +74,16 @@ app_server <- function( input, output, session ) {
       rv$datasets <- rv$datasets %>% dplyr::filter(between(mean_age, input$age[1], input$age[2]) | lower_age_range > input$age[1] | upper_age_range < input$age[2])
     }
     if (!is.null(input$ethnicity)) {
-      rv$datasets <- rv$datasets %>% dplyr::filter(str_detect(ethnicity_group %>% str_to_lower(), input$ethnicity))
+      rv$datasets <- rv$datasets %>% dplyr::filter(stringr::str_detect(ethnicity_group %>% stringr::str_to_lower(), input$ethnicity))
     }
     if (!is.null(input$device_brand)) {
-      rv$datasets <- rv$datasets %>% dplyr::filter(str_detect(Device.brand, input$device_brand))
+      rv$datasets <- rv$datasets %>% dplyr::filter(stringr::str_detect(Device.brand, input$device_brand))
     }
     if (!is.null(input$device_model)) {
-      rv$datasets <- rv$datasets %>% dplyr::filter(str_detect(Devie.model, input$device_model))
+      rv$datasets <- rv$datasets %>% dplyr::filter(stringr::str_detect(Devie.model, input$device_model))
     }
     if (!is.null(input$placement)) {
-      rv$datasets <- rv$datasets %>% dplyr::filter(str_detect(Placement, input$placement))
+      rv$datasets <- rv$datasets %>% dplyr::filter(stringr::str_detect(Placement, input$placement))
     }
   })
   
