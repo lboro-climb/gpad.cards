@@ -9,7 +9,7 @@
 start_up_modal <- function(){
   shiny::showModal(shiny::div(id = "start_modal", shiny::modalDialog(
     title = "Welcome to the GPAD Cards!",
-    shiny::h4("Description"),
+    shiny::h4("Description of this resource"),
     "The Global Physical Activity Dataset (GPAD) cards have been created to allow researchers to identify 
             datasets that have measured physical activity using an accelerometric device and collected a range of health outcomes. 
             The cards were initially informed by a review (add link). ",
