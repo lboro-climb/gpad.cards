@@ -19,6 +19,7 @@ Imports:
     htmltools,
     lubridate,
     magrittr,
+    mapproj,
     maps,
     plotly,
     processx,
