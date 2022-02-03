@@ -12,12 +12,12 @@ start_up_modal <- function(){
     shiny::h4("Description of this resource"),
     "The Global Physical Activity Dataset (GPAD) cards have been created to allow researchers to identify 
             datasets that have measured physical activity using an accelerometric device and collected a range of health outcomes. 
-            The cards were initially informed by a review (add link). ",
+            The cards were initially informed by a scoping review. ",
     shiny::h4("Contributing"),
     "If you have any questions, have found a bug, believe some of the data needs correcting or have any suggestions
-            for features or enhancements you would like to see; please visit our Github page (add link).",
+            for features or enhancements you would like to see; please visit our Github page (https://github.com/lboro-climb/gpad.cards/issues).",
     shiny::h4("Version control"),
-    "Version control information can be found on our Github page (add link). The current version of the cards is 0.0.9",
+    "Version control information can be found on our Github page (https://github.com/lboro-climb/gpad.cards). The current version of the cards is 0.0.9",
     shiny::h6("To return to this page, click the", icon("home"),"in the top left corner of the screen."),
     easyClose = TRUE,
     footer = "Click anywhere outside this message to close it"
