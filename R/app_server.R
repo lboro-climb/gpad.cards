@@ -1171,9 +1171,7 @@ app_server <- function( input, output, session ) {
                   )
                 )
               )
-            ),
-            tags$head(tags$style(".row{height:120px;}")),
-            tags$head(tags$style("#modal1 .modal-body {min-height: 1600px;}"))
+            )
           ),
           shiny::column(
             width = 6, align = "center",
