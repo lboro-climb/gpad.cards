@@ -18,9 +18,7 @@ app_ui <- function(request) {
       ),
       fixed = TRUE,
       tags$style("#home_page {cursor: pointer;}"),
-      tags$style("#issue_report {cursor: pointer; padding-left: 20px;"),
-      div(id = "home_page", icon("home")),
-      div(id = "issue_report", "Something we can improve?")
+      div(id = "home_page", icon("home"))
     ),
     sidebar = bs4Dash::dashboardSidebar(
       bs4Dash::sidebarMenu(
@@ -375,14 +373,16 @@ app_ui <- function(request) {
               data harmonisation. To increase the utility of the resource, it is planned the datasets included within it will be increased over time. As a first step, we aim to add
               datasets that include mental health outcomes and in the future hope to add datasets that have measured mortality and disease outcomes.",
                 shiny::br(),
-                "We welcome collaborators on this project. The easiest way to contribute is to look at Research Ideas Catalogue = Knowledge Insights (RIC=KI) website. RIC=KI is an ideas
-              catalogue created by Professor Amanda Daley. Ideas for future development of this resource will be posted on RIC=KI and interested researchers can express their interest.
-              RIC=KI can be found at: !! Link when available !!. Alternatively, please feel free to contact Jonah Thomas at:", a(HTML("<u>", "j.j.c.thomas@lboro.ac.uk", "</u>"),
+                shiny::br(),
+                "We welcome collaborators on this project. The easiest way to contribute is to look at Research Ideas Catalogue-Knowledge Insights (RIC-KI) website. RIC-KI is an ideas
+              catalogue created by Professor Amanda Daley. Ideas for future development of this resource will be posted on RIC-KI and interested researchers can express their interest.
+              RIC=KI can be found", a(HTML("<u>", "here", "</u>", href="https://ric-ki.lboro.ac.uk/")), ". Alternatively, please feel free to contact Jonah Thomas at:", a(HTML("<u>", "j.j.c.thomas@lboro.ac.uk", "</u>"),
                                                                                                                                  href = "mailto:j.j.c.thomas@lboro.ac.uk"
               ),
               "and he will get back to you as soon as possible.",
               shiny::br(),
-              "Source code for this application can be found in the following Github repository:", "!!Link when available!!",
+              shiny::br(),
+              "Source code for this application can be found in the following Github repository:", a(HTML("<u>", "https://github.com/lboro-climb/gpad.cards/", "</u>", href="https://github.com/lboro-climb/gpad.cards/")),
               "If you find any issues or bugs with this application, please report them in the Github Issues page. If there are any enhancements you would like to see added to the
               application, please also add these to the Github Issues page."
               )
@@ -399,7 +399,7 @@ app_ui <- function(request) {
                 status = "primary",
                 width = 12,
                 collapsible = FALSE,
-                "Jonah is the main author of the scoping review and primary developer of this resource. Jonah is a PhD candidate in the school of Sport Exercise and Health Science at
+                "Jonah is the first author of the scoping review and primary developer of this resource. Jonah is a PhD candidate in the school of Sport Exercise and Health Science at
               Loughborough University. Jonah's PhD is part of the Snacktivity project and focuses on the cardiometabolic benefits of short bouts of physical activity. For more information
               regarding Jonah's PhD, as well as some examples of his data science work can be found on his blog at:", a(HTML("<u>", "https://jonahthomas.netlify.app/", "</u>"), href = "https://jonahthomas.netlify.app/")
               ),
@@ -408,7 +408,7 @@ app_ui <- function(request) {
                   title = "CLiMB",
                   subtitle = "Research Group",
                   type = 2,
-                  image = "https://www.lboro.ac.uk/media/wwwlboroacuk/external/content/schoolsanddepartments/ssehs/photos/670x300/78677%20CLiMB%20Logo%20RGB%20A5.png"
+                  image = "https://avatars.githubusercontent.com/u/93585134?s=200&v=4"
                 ),
                 status = "primary",
                 width = 12,
@@ -427,13 +427,13 @@ app_ui <- function(request) {
         )
       )
     ),
-    footer = bs4Dash::bs4DashFooter(left = shiny::HTML("We welcome all contributions and feedback on <a href=https://github.com/jonahthomas/gpad.cards>Github</a>"), 
-                                    right = shiny::HTML("Version 0.0.9 &copy Jonah Thomas")),
+    footer = bs4Dash::bs4DashFooter(left = tags$img(src="http://thefutureindex.com/wp-content/uploads/sites/17/2016/05/Loughborough-Univeristy-Lboro-Logo.png", height="10%", width="10%", style="padding-top:.7em;"),
+                                    right = tags$div(style="text-align:right;", tags$img(src="https://www.lboro.ac.uk/media/wwwlboroacuk/external/content/schoolsanddepartments/ssehs/photos/670x300/78677%20CLiMB%20Logo%20RGB%20A5.png", height="20%", width="20%", style="align:right;"))),
     freshTheme = custom_colors_theme,
     preloader = list(html = shiny::tagList(shiny::h4("Welcome to the Global Physical Activity Dataset (GPAD) visualisation tool"), shiny::br(), waiter::spin_1(), "Loading..."), 
                      color = "#0092BD"),
     dark = NULL,
-    help = TRUE
+    help = FALSE
   )
 }
 
