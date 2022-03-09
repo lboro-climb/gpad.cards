@@ -1499,7 +1499,7 @@ app_server <- function( input, output, session ) {
               total = sum(derived_sample, na.rm = TRUE)
             ) %>%
             dplyr::mutate(
-              Device.brand = fct_lump_n(Device.brand, n = 10, w = total)
+              Device.brand = forcats::fct_lump_n(Device.brand, n = 10, w = total)
             ) %>%
             dplyr::group_by(Device.brand) %>%
             dplyr::summarise(
