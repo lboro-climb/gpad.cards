@@ -287,7 +287,7 @@ app_server <- function( input, output, session ) {
   output$open_access <- bs4Dash::renderbs4InfoBox({
     bs4Dash::bs4InfoBox(
       title = "Number of open access datasets",
-      value = rv$datasets %>% dplyr::count(Data.access.status) %>% dplyr::filter(Data.access.status == "Open") %>% dplyr::select(n),
+      value = sum(stringr::str_detect(rv$datasets$Data.access.status, "Open"), na.rm = TRUE),
       width = 12,
       color = "info",
       icon = shiny::icon("database"),

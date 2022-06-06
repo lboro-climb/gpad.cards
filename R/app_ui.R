@@ -428,7 +428,7 @@ app_ui <- function(request) {
       )
     ),
     footer = bs4Dash::bs4DashFooter(left = tags$img(src="http://thefutureindex.com/wp-content/uploads/sites/17/2016/05/Loughborough-Univeristy-Lboro-Logo.png", height="10%", width="10%", style="padding-top:.7em;"),
-                                    right = tags$div(style="text-align:right;", tags$img(src="https://www.lboro.ac.uk/media/wwwlboroacuk/external/content/schoolsanddepartments/ssehs/photos/670x300/78677%20CLiMB%20Logo%20RGB%20A5.png", height="20%", width="20%", style="align:right;"))),
+                                    right = tags$div(style="text-align:right;", tags$img(src="https://www.lboro.ac.uk/media/wwwlboroacuk/external/content/mediacentre/pressreleases/2021/08/climb-logo.png", height="20%", width="20%", style="align:right;"))),
     freshTheme = custom_colors_theme,
     preloader = list(html = shiny::tagList(shiny::h4("Welcome to the Global Physical Activity Dataset (GPAD) visualisation tool"), shiny::br(), waiter::spin_1(), "Loading..."), 
                      color = "#0092BD"),
