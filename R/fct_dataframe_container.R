@@ -26,7 +26,7 @@ dataframe_container <- function(){
           "Derived sample", "Ethnicity group", "Ethnicity percentage", "Device brand", "Device model", "Device placement", "Number of axes measured", "Other sensors?",
           "Number of days wear", "Epoch (seconds)", "Sampling frequency (Hz)", "Removal?", "File type available", "Height", "Weight", "Waist circumference", "Hip circumference",
           "Fat mass", "Visceral fat", "SBP", "DBP", "Resting heart rate", "HDL cholesterol", "LDL cholesterol", "Total cholesterol", "Triglyceride", "HbA1c", "VLDL",
-          "Blood glucose", "Insulin", "Oral glucose tolerance test", "Metabolic syndrome", "Sex", "Age", "Ethnicity", "Education level", "Household income",
+          "Blood glucose", "Insulin", "Oral glucose tolerance test", "Sex", "Age", "Ethnicity", "Education level", "Household income",
           "Socio-economic status", "Smoking status", "Clinical diagnosis medical history", "Fruit and vegetable intake"
         ), th)
       )

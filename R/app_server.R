@@ -18,7 +18,7 @@ app_server <- function( input, output, session ) {
   )
   
   health_outcomes <- c("Height", "Weight", "Waist.circumference", "Hip.circumference", "Fat.mass", "Visceral.fat", "SBP", "DBP", "Resting.heart.rate", "HDL.cholesterol", 
-                       "LDL.cholesterol", "Total.cholesterol", "Triglyceride", "VLDL", "HbA1c", "Glucose", "Insulin", "Oral.glucose.tolerance.test", "Metabolic.syndrome")
+                       "LDL.cholesterol", "Total.cholesterol", "Triglyceride", "VLDL", "HbA1c", "Glucose", "Insulin", "Oral.glucose.tolerance.test")
   
   # control modal dialog at start
   
@@ -568,7 +568,7 @@ app_server <- function( input, output, session ) {
   output$individual_health_outcomes <- shiny::renderPlot({
     if (input$health_outcomes_toggle == "Datasets") {
       rv$datasets %>%
-        dplyr::select(Height, Weight, Waist.circumference, Hip.circumference, Fat.mass, Visceral.fat, SBP, DBP, Resting.heart.rate, HDL.cholesterol, LDL.cholesterol, Total.cholesterol, Triglyceride, VLDL, HbA1c, Glucose, Insulin, Oral.glucose.tolerance.test, Metabolic.syndrome) %>%
+        dplyr::select(Height, Weight, Waist.circumference, Hip.circumference, Fat.mass, Visceral.fat, SBP, DBP, Resting.heart.rate, HDL.cholesterol, LDL.cholesterol, Total.cholesterol, Triglyceride, VLDL, HbA1c, Glucose, Insulin, Oral.glucose.tolerance.test) %>%
         tidyr::pivot_longer(cols = dplyr::everything(), names_to = "name", values_to = "value") %>%
         dplyr::mutate(
           value = dplyr::if_else(value == "Yes", 1, 0)
@@ -688,12 +688,6 @@ app_server <- function( input, output, session ) {
           ),
         rv$datasets %>%
           dplyr::filter(Oral.glucose.tolerance.test == "Yes") %>%
-          dplyr::summarise(
-            n = dplyr::n(),
-            participants = sum(derived_sample, na.rm = TRUE)
-          ),
-        rv$datasets %>%
-          dplyr::filter(Metabolic.syndrome == "Yes") %>%
           dplyr::summarise(
             n = dplyr::n(),
             participants = sum(derived_sample, na.rm = TRUE)
@@ -919,14 +913,14 @@ app_server <- function( input, output, session ) {
                 value = paste("Number of health outcomes collected:", rv$datasets[rv$sel, ] %>%
                                 dplyr::select(
                                   Height, Weight, Waist.circumference, Hip.circumference, Fat.mass, Visceral.fat, SBP, DBP, Resting.heart.rate, HDL.cholesterol, LDL.cholesterol,
-                                  Total.cholesterol, Triglyceride, HbA1c, VLDL, Glucose, Insulin, Oral.glucose.tolerance.test, Metabolic.syndrome
+                                  Total.cholesterol, Triglyceride, HbA1c, VLDL, Glucose, Insulin, Oral.glucose.tolerance.test
                                 ) %>%
                                 dplyr::mutate(across(.cols = dplyr::everything(), ~ dplyr::if_else(. == "Yes", 1, 0))) %>%
                                 dplyr::rowwise() %>%
                                 dplyr::summarise(
                                   covariates = sum(c(
                                     Height, Weight, Waist.circumference, Hip.circumference, Fat.mass, Visceral.fat, SBP, DBP, Resting.heart.rate, HDL.cholesterol, LDL.cholesterol,
-                                    Total.cholesterol, Triglyceride, HbA1c, VLDL, Glucose, Insulin, Oral.glucose.tolerance.test, Metabolic.syndrome
+                                    Total.cholesterol, Triglyceride, HbA1c, VLDL, Glucose, Insulin, Oral.glucose.tolerance.test
                                   ), na.rm = TRUE)
                                 ) %>% unlist(), sep = "\n"),
                 icon = shiny::icon("weight"),
@@ -1160,14 +1154,14 @@ app_server <- function( input, output, session ) {
                     value = paste("Number of health outcomes collected:", rv$datasets[rv$sel[[1]], ] %>%
                                     dplyr::select(
                                       Height, Weight, Waist.circumference, Hip.circumference, Fat.mass, Visceral.fat, SBP, DBP, Resting.heart.rate, HDL.cholesterol, 
-                                      LDL.cholesterol, Total.cholesterol, Triglyceride, HbA1c, VLDL, Glucose, Insulin, Oral.glucose.tolerance.test, Metabolic.syndrome
+                                      LDL.cholesterol, Total.cholesterol, Triglyceride, HbA1c, VLDL, Glucose, Insulin, Oral.glucose.tolerance.test
                                     ) %>%
                                     dplyr::mutate(across(.cols = everything(), ~ dplyr::if_else(. == "Yes", 1, 0))) %>%
                                     dplyr::rowwise() %>%
                                     dplyr::summarise(
                                       covariates = sum(c(
                                         Height, Weight, Waist.circumference, Hip.circumference, Fat.mass, Visceral.fat, SBP, DBP, Resting.heart.rate, HDL.cholesterol, 
-                                        LDL.cholesterol, Total.cholesterol, Triglyceride, HbA1c, VLDL, Glucose, Insulin, Oral.glucose.tolerance.test, Metabolic.syndrome
+                                        LDL.cholesterol, Total.cholesterol, Triglyceride, HbA1c, VLDL, Glucose, Insulin, Oral.glucose.tolerance.test
                                       ), na.rm = TRUE)
                                     ) %>% unlist(), sep = "\n"),
                     icon = shiny::icon("weight"),
@@ -1387,7 +1381,7 @@ app_server <- function( input, output, session ) {
                                     dplyr::select(
                                       Height, Weight, Waist.circumference, Hip.circumference, Fat.mass, Visceral.fat, SBP, DBP, 
                                       Resting.heart.rate, HDL.cholesterol, LDL.cholesterol, Total.cholesterol, Triglyceride, HbA1c, 
-                                      VLDL, Glucose, Insulin, Oral.glucose.tolerance.test, Metabolic.syndrome
+                                      VLDL, Glucose, Insulin, Oral.glucose.tolerance.test
                                     ) %>%
                                     dplyr::mutate(across(.cols = dplyr::everything(), ~ dplyr::if_else(. == "Yes", 1, 0))) %>%
                                     dplyr::rowwise() %>%
@@ -1395,7 +1389,7 @@ app_server <- function( input, output, session ) {
                                       covariates = sum(c(
                                         Height, Weight, Waist.circumference, Hip.circumference, Fat.mass, Visceral.fat, SBP, DBP, 
                                         Resting.heart.rate, HDL.cholesterol, LDL.cholesterol, Total.cholesterol, Triglyceride, HbA1c,
-                                        VLDL, Glucose, Insulin, Oral.glucose.tolerance.test, Metabolic.syndrome
+                                        VLDL, Glucose, Insulin, Oral.glucose.tolerance.test
                                       ), na.rm = TRUE)
                                     ) %>% unlist(), sep = "\n"),
                     icon = shiny::icon("weight"),
@@ -1447,7 +1441,7 @@ app_server <- function( input, output, session ) {
   output$table <- DT::renderDataTable(
     DT::datatable(rv$datasets %>% dplyr::select(
       1:39, Height, Weight, Waist.circumference, Hip.circumference, Fat.mass, Visceral.fat, SBP, DBP, Resting.heart.rate, HDL.cholesterol, LDL.cholesterol,
-      Total.cholesterol, Triglyceride, HbA1c, VLDL, Glucose, Insulin, Oral.glucose.tolerance.test, Metabolic.syndrome, Sex, Age, Ethnicity, Education.level,
+      Total.cholesterol, Triglyceride, HbA1c, VLDL, Glucose, Insulin, Oral.glucose.tolerance.test, Sex, Age, Ethnicity, Education.level,
       Household.income, Socio.economic.status, Smoking.status, Clinical.diagnosis.medical.history, Fruit.and.vegetable.intake
     ),
     container = sketch,
@@ -1548,7 +1542,7 @@ app_server <- function( input, output, session ) {
       output$health_search <- DT::renderDataTable(
         DT::datatable(rv$datasets %>% dplyr::select(
           1:39, Height, Weight, Waist.circumference, Hip.circumference, Fat.mass, Visceral.fat, SBP, DBP, Resting.heart.rate, HDL.cholesterol, LDL.cholesterol,
-          Total.cholesterol, Triglyceride, HbA1c, VLDL, Glucose, Insulin, Oral.glucose.tolerance.test, Metabolic.syndrome, Sex, Age, Ethnicity, Education.level,
+          Total.cholesterol, Triglyceride, HbA1c, VLDL, Glucose, Insulin, Oral.glucose.tolerance.test, Sex, Age, Ethnicity, Education.level,
           Household.income, Socio.economic.status, Smoking.status, Clinical.diagnosis.medical.history, Fruit.and.vegetable.intake
         ) %>%
           dplyr::filter(get(input$health_outcome_select) == "Yes"),
@@ -1612,7 +1606,7 @@ app_server <- function( input, output, session ) {
           output$health_search <- DT::renderDataTable(
             DT::datatable(rv$datasets %>% dplyr::select(
               1:39, Height, Weight, Waist.circumference, Hip.circumference, Fat.mass, Visceral.fat, SBP, DBP, Resting.heart.rate, HDL.cholesterol, LDL.cholesterol,
-              Total.cholesterol, Triglyceride, HbA1c, VLDL, Glucose, Insulin, Oral.glucose.tolerance.test, Metabolic.syndrome, Sex, Age, Ethnicity, Education.level,
+              Total.cholesterol, Triglyceride, HbA1c, VLDL, Glucose, Insulin, Oral.glucose.tolerance.test, Sex, Age, Ethnicity, Education.level,
               Household.income, Socio.economic.status, Smoking.status, Clinical.diagnosis.medical.history, Fruit.and.vegetable.intake, anthropometry, blood_pressure, 
               lipids, glucose
             ) %>%
@@ -1656,7 +1650,7 @@ app_server <- function( input, output, session ) {
         DT::datatable(rv$datasets %>% dplyr::select(
           6:30, anthropometry, blood_pressure, lipids, glucose, Height, Weight, Waist.circumference, Hip.circumference, Fat.mass, 
           Visceral.fat, SBP, DBP, Resting.heart.rate, HDL.cholesterol, LDL.cholesterol, Total.cholesterol, Triglyceride, HbA1c, 
-          VLDL, Glucose, Insulin, Oral.glucose.tolerance.test, Metabolic.syndrome, Sex, Age, Ethnicity, Education.level,
+          VLDL, Glucose, Insulin, Oral.glucose.tolerance.test, Sex, Age, Ethnicity, Education.level,
           Household.income, Socio.economic.status, Smoking.status, Clinical.diagnosis.medical.history, Fruit.and.vegetable.intake
         ) %>%
           dplyr::filter(get(input$grouped_health_outcome_select) == "Yes"),

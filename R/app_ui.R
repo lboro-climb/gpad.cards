@@ -279,8 +279,7 @@ app_ui <- function(request) {
                             "HbA1c",
                             "Glucose",
                             "Insulin",
-                            "Oral glucose tolerance test" = "Oral.glucose.tolerance.test",
-                            "Metabolic syndrome" = "Metabolic.syndrome"
+                            "Oral glucose tolerance test" = "Oral.glucose.tolerance.test"
                 ), multiple = FALSE
               )
             )
