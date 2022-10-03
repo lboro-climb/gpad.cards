@@ -44,8 +44,6 @@ app_server <- function( input, output, session ) {
     DT::dataTableOutput("paper_links"), size = "l"
   )))
   
-  # add additional filters as above for 6 new inputs
-  
   shiny::observeEvent(c(input$sidebar, input$country), {
     if (input$sidebar == "gpadcards") {
       if (input$country == "All") {
@@ -59,9 +57,17 @@ app_server <- function( input, output, session ) {
     }
   })
   
-  # need to work out how best to filter by sex - recommend convert all to percentage, then percentage of dataset, then use this to count participant numbers
-  # have age filter filter by age range as well as central tendency measure
-  # Have male/female filter work off datasets that contain rather than specific number
+  shiny::observeEvent(c(input$sidebar, input$country), {
+    if (input$sidebar == "gpadcards") {
+      if (input$country == "All") {
+        if (input$continent != "All") {
+          rv$datasets <- datasets %>% dplyr::filter(Continent.of.data.collection == input$continent)
+        } else {
+          rv$datasets <- datasets
+        }
+      }
+    }
+  })
   
   shiny::observeEvent(input$filter, {
     if (input$sex == "Male") {
@@ -1602,6 +1608,21 @@ app_server <- function( input, output, session ) {
             ggplot2::coord_flip() +
             ggplot2::scale_x_discrete(name = NULL) +
             ggplot2::scale_y_continuous(name = "Number of participants")
+          
+          output$health_search <- DT::renderDataTable(
+            DT::datatable(rv$datasets %>% dplyr::select(
+              1:39, Height, Weight, Waist.circumference, Hip.circumference, Fat.mass, Visceral.fat, SBP, DBP, Resting.heart.rate, HDL.cholesterol, LDL.cholesterol,
+              Total.cholesterol, Triglyceride, HbA1c, VLDL, Glucose, Insulin, Oral.glucose.tolerance.test, Metabolic.syndrome, Sex, Age, Ethnicity, Education.level,
+              Household.income, Socio.economic.status, Smoking.status, Clinical.diagnosis.medical.history, Fruit.and.vegetable.intake, anthropometry, blood_pressure, 
+              lipids, glucose
+            ) %>%
+              dplyr::filter(get(input$grouped_health_outcome_select) == "Yes"),
+            container = sketch,
+            selection = list(mode = "multiple", selected = rv$sel),
+            rownames = FALSE,
+            options = list(autoWidth = FALSE, scrollX = TRUE, processing = FALSE)
+            )
+          )
         }
       })
       
