@@ -7,7 +7,7 @@ The goal of GPAD cards is to allow researchers to identify datasets that have co
 
 ## Installation
 
-You can view the GPAD cards online at [[https://jonah-thomas.shinyapps.io/scoping_shiny/](https://lboro-climb.shinyapps.io/gpad/)]([https://jonah-thomas.shinyapps.io/scoping_shiny/](https://lboro-climb.shinyapps.io/gpad/)). Alternatively, if you would prefer to run that resource locally you can download the GPAD cards from Github using the code below. 
+You can view the GPAD cards online at [https://lboro-climb.shinyapps.io/gpad/](https://lboro-climb.shinyapps.io/gpad/). Alternatively, if you would prefer to run that resource locally you can download the GPAD cards from Github using the code below. 
 
 ```{r}
 library(devtools)
